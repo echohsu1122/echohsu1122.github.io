@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico.png" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>山海島事</title>
+    <script
+      src="https://kit.fontawesome.com/03191f2069.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="wrap_header">
+          <div class="header-menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+            <span class="hover-text">Open Menu</span>
+            <i class="fa-solid fa-burger"></i>
+            <!-- <i class="fa-solid fa-xmark"></i> -->
+          </div>
+          <div class="header-menu-list">
+            <a href="#" class="logo">
+              <img src="./favicon.ico.png" width="52px" />
+            </a>
+            <a href="#" class="link">年度活動</a>
+            <a href="#" class="link">節慶活動</a>
+            <a href="#" class="link">關於島</a>
+            <a href="#" class="link">聯絡我們</a>
+          </div>
+          <div class="header-account">
+            <a href="#"> <i class="fa-regular fa-user"></i></a>
+          </div>
+        </div>
+        <div class="wrap_app_header">
+          <a href="#">找景點</a>
+          <a href="#">找住宿</a>
+          <a href="#">找餐廳</a>
+          <a href="#">關於島</a>
+          <a href="#">聯絡我們</a>
+        </div>
+      </div>
+    </header>
+    <div id="up"><i class="fa-solid fa-arrow-up"></i></div>
+    <main>
+      <div class="container">
+        <section class="search-container">
+          <form class="select-cities">
+            <label id="labelcity" for="city">選擇地區</label>
+            <select name="city" id="city">
+              <option value="All">全部</option>
+              <option value="Keelung">基隆市</option>
+              <option value="Taipei">臺北市</option>
+              <option value="NewTaipei">新北市</option>
+              <option value="Taoyuan">桃園市</option>
+              <option value="Taichung">臺中市</option>
+              <option value="Tainan">臺南市</option>
+              <option value="Kaohsiung">高雄市</option>
+              <option value="Hsinchu">新竹市</option>
+              <option value="HsinchuCounty">新竹縣</option>
+              <option value="YilanCounty">宜蘭縣</option>
+              <option value="MiaoliCounty">苗栗縣</option>
+              <option value="NantouCounty">南投縣</option>
+              <option value="ChanghuaCounty">彰化縣</option>
+              <option value="YunlinCounty">雲林縣</option>
+              <option value="ChiayiCounty">嘉義縣</option>
+              <option value="Chiayi">嘉義市</option>
+              <option value="PingtungCounty">屏東縣</option>
+              <option value="HualienCounty">花蓮縣</option>
+              <option value="TaitungCounty">臺東縣</option>
+              <option value="KinmenCounty">金門縣</option>
+              <option value="PenghuCounty">澎湖縣</option>
+              <option value="LienchiangCounty">連江縣</option>
+            </select>
+          </form>
+
+          <!--<button class="search-views">
+            <span>全台景點</span><i class="fa-solid fa-caret-down"></i>
+          </button>
+           <div class="dropdown-container">
+            <div class="tabs-container">
+              <a href="#north">北部</a>
+              <a href="#middle">中部</a>
+              <a href="#south">南部</a>
+              <a href="#other">花東、離島</a>
+              <div class="cities-container">
+                <div class="cities-slider">
+                  <div class="cities-slide" id="north">
+                    <button class="btn_north">基隆</button>
+                    <button class="btn_north">台北</button>
+                    <button class="btn_north">新北</button>
+                    <button class="btn_north">桃園</button>
+                    <button class="btn_north">新竹</button>
+                    <button class="btn_north">宜蘭</button>
+                  </div>
+                  <div class="cities-slide" id="middle">
+                    <button class="btn_middle">苗栗</button>
+                    <button class="btn_middle">台中</button>
+                    <button class="btn_middle">彰化</button>
+                    <button class="btn_middle">南投</button>
+                    <button class="btn_middle">雲林</button>
+                  </div>
+                  <div class="cities-slide" id="south">
+                    <button class="btn_south">嘉義</button>
+                    <button class="btn_south">台南</button>
+                    <button class="btn_south">高雄</button>
+                    <button class="btn_south">屏東</button>
+                  </div>
+                  <div class="cities-slide" id="other">
+                    <button class="btn_other">花蓮</button>
+                    <button class="btn_other">台東</button>
+                    <button class="btn_other">連江</button>
+                    <button class="btn_other">金門</button>
+                    <button class="btn_other">澎湖</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="search-box">
+            <label for="search-text"></label>
+            <input
+              text="text"
+              id="search-text"
+              name="search-text"
+              placeholder="search ..."
+              minlength="5"
+              maxlength="25"
+            />
+          </div>
+        </section>
+        <div class="select-option">
+          <h3>縣市 <span id="selecCity">全部</span></h3>
+          <button id="ScenicSpot">景點</button>
+          <button id="Hotel">旅宿</button>
+          <button id="Restaurant">餐廳</button>
+        </div>
+        <section class="cities">
+          <div class="card-container">
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/193/640x480"
+                alt="檨仔林埤濕地公園"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="">高雄市</h3>
+                <h3 class="card-sub-title">檨仔林埤濕地公園</h3>
+              </figcaption>
+
+              <div class="info">
+                <p class="card-text">
+                  狹長型的檨仔林埤濕地公園位於高雄市三民區，鼎金後路與鼎金系統交流道之間，是高雄市近年來整治成功，兼具滯洪、防洪、休閒教育與生態功能的埤塘濕地公園之一。園區北側有「生態密林區」，茂密的原生檨仔樹林如同都市之肺，可以阻隔、緩衝北側高速公路對生態與環境造成的干擾;
+                  「生態維持區」則將原有地形疏浚深化，形成生態浮島與水域栽培育區，遍植野薑花、慈菇、香蒲等水生植物，利用生態池水體自淨機制淨化水質。清新的環境與自然的綠意，吸引水鳥與生物棲息，腳踏車道與林蔭綠意提供遊人休憩放鬆的清淨角落，也是高雄市美麗的後花園。
+                </p>
+              </div>
+            </figure>
+
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+            <figure class="card">
+              <img
+                src="https://khh.travel/image/889/640x480"
+                alt="中都濕地公園07"
+                width="398.4"
+                height="265.6"
+              />
+              <figcaption class="card-body">
+                <h3 class="card-city">高雄市</h3>
+                <h3 class="card-sub-title">中都愛河濕地公園</h3>
+              </figcaption>
+              <div class="info">
+                <p class="card-text">
+                  串起高雄城市生態綠廊的中都愛河濕地公園座落於愛河南側的十全與九如路之間，全長約2.5公里，佔地達七千餘平方公尺。為了打造與市民生活融合的「水岸花香的永續生態城市」，愛河濕地公園以生態工法構築邊坡，重現早期溼地豐富生態棲息環境。園區設置原木建築為遊客解說中心，另有木造涼亭、吊橋、潮汐親水平台以及漂流木為設計主軸的燈具座椅等設施，質樸中深具原野氣息，而仿自然的複層林相植栽也使市區重現豐富林相。悠遊於綠油油曲折玲瓏的河岸可見各種水鳥飛翔駐留、紅樹林和濕地更使愛河重現盎然生機。由於中都濕地公園打造出兼具自然生態、教育解說及民眾休憩等眾多功能，又完整呈現愛河沿岸多樣性的風貌，2012年榮獲「全球卓越建設獎」殊榮，也因此有高雄都會桃花源的美稱。
+                </p>
+              </div>
+            </figure>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div id="dataEnd">
+      <span></span>
+    </div>
+    <footer>
+      中華民國交通部 版權所有 Copyright © 2023 MOTC All Rights Reserved.
+    </footer>
+    <script src="./script.js"></script>
+    <!-- <script type="module" src="./localname.js"></script> -->
+  </body>
+</html>
