@@ -3,7 +3,8 @@
 :root {
   --font-color: #404258;
   --background-color: #f8f6f4;
-  --select-button: #fff0f5;
+  --select-button: #6c3428;
+  --select-btncolor: #f2ead3;
 }
 
 * {
@@ -97,60 +98,7 @@ main {
           }
         }
       }
-      /*
-      .search-views {
-        flex: 1;
-        span,
-        i {
-          padding-inline: 0.4rem;
-          font-size: 1.5rem;
-          color: var(--font-color);
-        }
-      }
-      .dropdown-container {
-        position: absolute;
-        z-index: 1;
-        display: none;
-        opacity: 1;
-        position: absolute;
-        top: 50%;
-        left: 5%;
-        width: calc(100% - 80px);
-        max-width: 500px;
-        border: 1px solid #333;
-        border-radius: 25px;
-        padding: 1rem;
-        .tabs-container {
-          // display: block;
-          width: 100%;
-          a {
-            padding-right: 1rem;
-            font-size: 1.5rem;
-            color: var(--font-color);
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-          .cities-container {
-            height: 48px;
 
-            overflow: hidden;
-            margin-top: 5px;
-            .cities-slider {
-              .cities-slide {
-                button {
-                  border-radius: 15px;
-                  font-size: 1.5em;
-                  padding: 0.2em;
-                  margin: 0.2rem;
-                  color: #f8f6f4;
-                }
-              }
-            }
-          }
-        }
-      }
-      */
       .search-box {
         flex: 6;
         border: 2px solid #333;
@@ -168,20 +116,6 @@ main {
           outline: 4px solid #ea906c;
         }
       }
-      /*
-      .btn_north {
-        background-color: #7895cb;
-      }
-      .btn_middle {
-        background-color: #b31312;
-      }
-      .btn_south {
-        background-color: #85a389;
-      }
-      .btn_other {
-        background-color: #815b5b;
-      }
-      */
     }
     .select-option {
       display: flex;
@@ -201,6 +135,10 @@ main {
         color: var(--font-color);
         padding: 2px;
       }
+      #ScenicSpot {
+        background-color: var(--select-button);
+        color: var(--select-btncolor);
+      }
     }
     .cities {
       .card-container {
@@ -212,45 +150,36 @@ main {
           border: 1px solid #333;
           border-radius: 25px;
           width: 18rem;
-          height: 23rem;
+          height: 20rem;
           margin: 0.5rem;
           position: relative;
           cursor: pointer;
 
           img {
-            // display: inline-block;
             opacity: 0;
             max-width: 100%;
             max-height: 12rem;
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
             transition: opacity 0.8s ease-in-out;
+            z-index: -1;
           }
           .card-body {
             width: 100%;
-
-            // height: inherit;
-            // position: absolute;
-            // top: 0;
-            // left: 0;
             color: #333;
             font-weight: 600;
-            padding: 8px;
+            padding: 4px;
             border-radius: 25px;
-            // background-color: #33333348;
             backdrop-filter: blur(2px);
-            // opacity: 0;
             transition: all 1s ease-in-out;
+            overflow: scroll;
 
-            .name {
-              // display: inline-block;
+            .name,
+            .sub-title,
+            .address,
+            span {
               font-size: 1.2rem;
-              margin-bottom: 10px;
-            }
-            h5,
-            span,
-            .sub-title {
-              font-size: 1.2em;
+              margin-bottom: 2px;
             }
             button {
               background-color: aliceblue;
@@ -263,10 +192,6 @@ main {
             }
           }
 
-          // &:hover {
-          //   transform: translateY(-20px);
-          //   transition: all 0.2s ease-in;
-          // }
           &:hover .info {
             opacity: 1;
           }
@@ -284,10 +209,16 @@ main {
             border-radius: 25px;
             overflow-y: scroll;
 
-            p {
+            .card-text {
               background-color: transparent;
-              // backdrop-filter: blur(2px);
-              z-index: -1;
+              h5,
+              span {
+                padding: 2px;
+                background-color: transparent;
+                font-size: 1.2rem;
+              }
+
+              // z-index: -1;
               font-size: 1.3rem;
             }
             &:active {
@@ -431,18 +362,8 @@ footer {
         i {
           font-size: 1.5rem;
           color: var(--font-color);
-          /*
-          &:hover + .fa-burger {
-            opacity: 1;
-            color: #468b97;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-          */
+
           &:hover {
-            // opacity: 0;
             color: #468b97;
             cursor: pointer;
           }

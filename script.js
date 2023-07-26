@@ -11,24 +11,15 @@ menuBar.addEventListener("click", () => {
   }
 });
 
-//// search part ////
-/*
-const searchBtn = document.querySelector(".search-views");
-const dropdownArea = document.querySelector(".dropdown-container");
-searchBtn.addEventListener("click", () => {
-  searchBtn.classList.toggle("active");
-  if (searchBtn.classList.contains("active")) {
-    dropdownArea.style.display = "block";
-    console.log(searchBtn.classList);
-  } else {
-    dropdownArea.style.display = "none";
-  }
-});*/
-
 /*Card*/
-let cityQuery = document.querySelector("#city");
-let selecCity = document.querySelector("#selecCity");
-let cardContainer = document.querySelector(".card-container");
+const cityQuery = document.querySelector("#city");
+const selecCity = document.querySelector("#selecCity");
+const cardContainer = document.querySelector(".card-container");
+const searchInput = document.querySelector("#search-text");
+const ScenicSpot = document.querySelector("#ScenicSpot");
+const Hotel = document.querySelector("#Hotel");
+const Restaurant = document.querySelector("#Restaurant");
+const upToTop = document.querySelector("#up");
 let searchCity = "";
 let selectOption = "ScenicSpot";
 let skip = 0;
@@ -36,14 +27,14 @@ let access_token = "";
 let ScenicSpotUrl;
 let ScenicSpotdata = [];
 let str = "";
-let ScenicSpot = document.querySelector("#ScenicSpot");
-let Hotel = document.querySelector("#Hotel");
-let Restaurant = document.querySelector("#Restaurant");
+
 let dataUnfide = false;
-/*get response */
+
 setTimeout(() => {
   access_token = "";
 }, 21600);
+
+/*get response */
 async function getResponse(selectOption, searchCity) {
   selectUrl = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${selectOption}/${searchCity}?%24filter=Picture%2FPictureUrl1%20ne%20null%20and%20Picture%2FPictureDescription1%20ne%20null&%24top=50&%24skip=${skip}&%24format=JSON`;
   console.log(selectUrl);
@@ -59,13 +50,11 @@ async function getResponse(selectOption, searchCity) {
     },
   }).catch((error) => {
     console.log(`出現錯誤${error}`);
-    console.log(`fetchAccessToken();`);
   });
 
   return response.json();
 }
 
-const searchInput = document.querySelector("#search-text");
 searchInput.addEventListener("input", (e) => {
   const cards = document.querySelectorAll(".card");
   const value = e.target.value;
@@ -94,7 +83,6 @@ async function getData(selectOption, searchCity, skip) {
       // document.querySelector("footer").style.marginBottom = "65vh";
     } else if (selectOption === "Restaurant") {
       datas.forEach((data) => {
-        let description;
         if (data === undefined) return;
         if (data.Description) {
           description = "沒有相關資料";
@@ -111,15 +99,16 @@ async function getData(selectOption, searchCity, skip) {
                 
                 <figcaption class="card-body">
                   <h3 class="name">${data.RestaurantName}</h3>
-                  <h5 class="sub-title">地址:</h5>
+                  <h5 class="address">地址:</h5>
                   <span>${data.Address}</span>
-                  <h5>聯絡電話: </h5><span>${data.Phone}</span>  
+            
                 </figcaption>
              
                 <div class="info">
-                  <p class="card-text">
-                    營業時間: ${data.OpenTime}
-                </p>
+                  <div class="card-text">
+                    <h5>聯絡電話: </h5><span>${data.Phone}</span>  
+                    <h5>營業時間: </h5><span>${data.OpenTime}</span>
+                </div>
               </div>
             </figure>`;
       });
@@ -142,15 +131,14 @@ async function getData(selectOption, searchCity, skip) {
                 />
                 <figcaption class="card-body">
                   <h3 class="name">${data.HotelName}</h3>
-                  <h5 class="sub-title">地址:</h5><span>${data.Address}</span>
-                  <h5 >聯絡電話: </h5><span>${data.Phone}</span>
+                  <h5 class="address">地址:</h5><span>${data.Address}</span>
                   
                 </figcaption>
                 <div class="info">
-                  <p class="card-text">
-                  ${description}
-                </p>
+                 <div class="card-text">
+                    <h5>聯絡電話: </h5><span>${data.Phone}</span>  
                   </div>
+                </div>
             </figure>`;
       });
     } else {
@@ -189,14 +177,15 @@ async function getData(selectOption, searchCity, skip) {
                  
                 />
                 <figcaption class="card-body">
-                  <h3 class="name">${city}</h3>
-                  <h5 class="sub-title">${data.ScenicSpotName}</h5>
-                  <span class="card-address">地址: ${address}</span>
+                  <h3 class="name">${city}
+                  <span class="sub-title">${data.ScenicSpotName}</span></h3>
+                  <h5 class="address">地址:</h5><span>${address}</span>
+                
                 </figcaption>
                  <div class="info">
-                 <p class="card-text">
+                  <div class="card-text">
                   ${description}
-                </p>
+                </div>
               </div>
             </figure>`;
       });
@@ -258,11 +247,15 @@ cityQuery.addEventListener("change", (e) => {
     searchCity = "";
   }
   selectOption = "ScenicSpot";
-  ScenicSpot.style.backgroundColor = "var(--select-button)";
   [Hotel, Restaurant].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "inherit";
+    btn.style.backgroundColor = "var(--background-color)";
+    btn.style.color = "var(--font-color)";
   });
+
+  ScenicSpot.style.backgroundColor = "var(--select-button)";
+  ScenicSpot.style.color = "var(--select-btncolor)";
+
   getData(selectOption, searchCity, skip);
 });
 
@@ -273,10 +266,12 @@ ScenicSpot.addEventListener("click", () => {
   ScenicSpot.classList.toggle("active");
   [Hotel, Restaurant].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "inherit";
+    btn.style.backgroundColor = "var(--background-color)";
+    btn.style.color = "var(--font-color)";
   });
   if (ScenicSpot.classList.contains("active")) {
     ScenicSpot.style.backgroundColor = "var(--select-button)";
+    ScenicSpot.style.color = "var(--select-btncolor)";
   }
   getData(selectOption, searchCity);
 });
@@ -286,12 +281,15 @@ Hotel.addEventListener("click", () => {
   skip = 0;
   selectOption = "Hotel";
   Hotel.classList.toggle("active");
+
   [ScenicSpot, Restaurant].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "inherit";
+    btn.style.backgroundColor = "var(--background-color)";
+    btn.style.color = "var(--font-color)";
   });
   if (Hotel.classList.contains("active")) {
     Hotel.style.backgroundColor = "var(--select-button)";
+    Hotel.style.color = "var(--select-btncolor)";
   }
   getData(selectOption, searchCity, skip);
 });
@@ -303,10 +301,12 @@ Restaurant.addEventListener("click", () => {
   Restaurant.classList.toggle("active");
   [Hotel, ScenicSpot].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "inherit";
+    btn.style.backgroundColor = "var(--background-color)";
+    btn.style.color = "var(--font-color)";
   });
   if (Restaurant.classList.contains("active")) {
     Restaurant.style.backgroundColor = "var(--select-button)";
+    Restaurant.style.color = "var(--select-btncolor)";
   }
   getData(selectOption, searchCity, skip);
 });
@@ -340,7 +340,6 @@ function load(entries) {
   }
 }
 
-let upToTop = document.querySelector("#up");
 upToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });

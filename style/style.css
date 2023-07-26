@@ -2,7 +2,8 @@
 :root {
   --font-color: #404258;
   --background-color: #f8f6f4;
-  --select-button: #fff0f5;
+  --select-button: #6c3428;
+  --select-btncolor: #f2ead3;
 }
 
 * {
@@ -79,74 +80,6 @@ main .container .search-container {
   width: 90%;
   margin: 0 auto;
   display: flex;
-  /*
-  .search-views {
-    flex: 1;
-    span,
-    i {
-      padding-inline: 0.4rem;
-      font-size: 1.5rem;
-      color: var(--font-color);
-    }
-  }
-  .dropdown-container {
-    position: absolute;
-    z-index: 1;
-    display: none;
-    opacity: 1;
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    width: calc(100% - 80px);
-    max-width: 500px;
-    border: 1px solid #333;
-    border-radius: 25px;
-    padding: 1rem;
-    .tabs-container {
-      // display: block;
-      width: 100%;
-      a {
-        padding-right: 1rem;
-        font-size: 1.5rem;
-        color: var(--font-color);
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-      .cities-container {
-        height: 48px;
-
-        overflow: hidden;
-        margin-top: 5px;
-        .cities-slider {
-          .cities-slide {
-            button {
-              border-radius: 15px;
-              font-size: 1.5em;
-              padding: 0.2em;
-              margin: 0.2rem;
-              color: #f8f6f4;
-            }
-          }
-        }
-      }
-    }
-  }
-  */
-  /*
-  .btn_north {
-    background-color: #7895cb;
-  }
-  .btn_middle {
-    background-color: #b31312;
-  }
-  .btn_south {
-    background-color: #85a389;
-  }
-  .btn_other {
-    background-color: #815b5b;
-  }
-  */
 }
 main .container .search-container .select-cities {
   flex: 2;
@@ -200,6 +133,10 @@ main .container .select-option button {
   color: var(--font-color);
   padding: 2px;
 }
+main .container .select-option #ScenicSpot {
+  background-color: var(--select-button);
+  color: var(--select-btncolor);
+}
 main .container .cities .card-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -210,7 +147,7 @@ main .container .cities .card-container .card {
   border: 1px solid #333;
   border-radius: 25px;
   width: 18rem;
-  height: 23rem;
+  height: 20rem;
   margin: 0.5rem;
   position: relative;
   cursor: pointer;
@@ -222,25 +159,25 @@ main .container .cities .card-container .card img {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   transition: opacity 0.8s ease-in-out;
+  z-index: -1;
 }
 main .container .cities .card-container .card .card-body {
   width: 100%;
   color: #333;
   font-weight: 600;
-  padding: 8px;
+  padding: 4px;
   border-radius: 25px;
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
   transition: all 1s ease-in-out;
+  overflow: scroll;
 }
-main .container .cities .card-container .card .card-body .name {
+main .container .cities .card-container .card .card-body .name,
+main .container .cities .card-container .card .card-body .sub-title,
+main .container .cities .card-container .card .card-body .address,
+main .container .cities .card-container .card .card-body span {
   font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-main .container .cities .card-container .card .card-body h5,
-main .container .cities .card-container .card .card-body span,
-main .container .cities .card-container .card .card-body .sub-title {
-  font-size: 1.2em;
+  margin-bottom: 2px;
 }
 main .container .cities .card-container .card .card-body button {
   background-color: aliceblue;
@@ -269,10 +206,15 @@ main .container .cities .card-container .card .info {
   border-radius: 25px;
   overflow-y: scroll;
 }
-main .container .cities .card-container .card .info p {
+main .container .cities .card-container .card .info .card-text {
   background-color: transparent;
-  z-index: -1;
   font-size: 1.3rem;
+}
+main .container .cities .card-container .card .info .card-text h5,
+main .container .cities .card-container .card .info .card-text span {
+  padding: 2px;
+  background-color: transparent;
+  font-size: 1.2rem;
 }
 main .container .cities .card-container .card .info:active {
   opacity: 1;
@@ -380,16 +322,6 @@ footer {
   header .container .header-menu-toggle i {
     font-size: 1.5rem;
     color: var(--font-color);
-    /*
-    &:hover + .fa-burger {
-      opacity: 1;
-      color: #468b97;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    */
   }
   header .container .header-menu-toggle i:hover {
     color: #468b97;
