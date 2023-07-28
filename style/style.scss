@@ -67,7 +67,9 @@ header {
     }
   }
 }
-
+main::-webkit-scrollbar {
+  display: none;
+}
 main {
   width: 100%;
   display: flex;
@@ -144,7 +146,7 @@ main {
       .card-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        overflow-x: hidden;
+        overflow: hidden;
         .card {
           color: #333;
           border: 1px solid #333;
@@ -164,6 +166,7 @@ main {
             transition: opacity 0.8s ease-in-out;
             z-index: -1;
           }
+
           .card-body {
             width: 100%;
             color: #333;
@@ -189,6 +192,9 @@ main {
               float: right;
               border-end-start-radius: 25px;
               cursor: pointer;
+            }
+            &::-webkit-scrollbar {
+              display: none;
             }
           }
 
@@ -223,6 +229,9 @@ main {
             }
             &:active {
               opacity: 1;
+            }
+            &::-webkit-scrollbar {
+              display: none;
             }
           }
         }

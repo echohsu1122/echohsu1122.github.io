@@ -65,6 +65,10 @@ header .container .wrap_app_header {
   display: none;
 }
 
+main::-webkit-scrollbar {
+  display: none;
+}
+
 main {
   width: 100%;
   display: flex;
@@ -140,7 +144,7 @@ main .container .select-option #ScenicSpot {
 main .container .cities .card-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 main .container .cities .card-container .card {
   color: #333;
@@ -188,6 +192,9 @@ main .container .cities .card-container .card .card-body button {
   border-end-start-radius: 25px;
   cursor: pointer;
 }
+main .container .cities .card-container .card .card-body::-webkit-scrollbar {
+  display: none;
+}
 main .container .cities .card-container .card:hover .info {
   opacity: 1;
 }
@@ -218,6 +225,9 @@ main .container .cities .card-container .card .info .card-text span {
 }
 main .container .cities .card-container .card .info:active {
   opacity: 1;
+}
+main .container .cities .card-container .card .info::-webkit-scrollbar {
+  display: none;
 }
 main .container .cities .card-container .loaded {
   position: relative;
