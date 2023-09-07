@@ -230,7 +230,9 @@ const fetchAccessToken = async () => {
 
 // getData();
 searchInput.addEventListener("input", (e) => {
+  getData(selectOption, searchCity);
   container.style.display = "block";
+  newBtn.style.display = "block";
   homepage.style.display = "none";
   const cards = document.querySelectorAll(".card");
   const value = e.target.value;

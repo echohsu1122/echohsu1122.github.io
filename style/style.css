@@ -522,6 +522,20 @@ footer {
   main .container .cities .card-container {
     grid-template-columns: 1fr;
   }
+  main .homepage .tour .tour_cell .tour_descript h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  main .homepage .tour .tour_cell .tour_descript pre {
+    font-size: 1rem;
+  }
+  main .homepage .year_active .card_container {
+    width: 40%;
+  }
+  main .homepage .year_active .card_container .btn {
+    width: 90%;
+    font-size: 1rem;
+  }
 }
 @media (min-width: 576px) and (max-width: 768px) {
   header .header_container .header-menu-toggle {
@@ -623,6 +637,17 @@ footer {
   }
   main .container .cities .card-container {
     grid-template-columns: 1fr 1fr;
+  }
+  main .homepage .tour .tour_cell .tour_descript h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  main .homepage .year_active .card_container {
+    width: 40%;
+  }
+  main .homepage .year_active .card_container .btn {
+    width: 90%;
+    font-size: 1rem;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {

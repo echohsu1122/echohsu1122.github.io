@@ -561,6 +561,30 @@ footer {
         }
       }
     }
+    .homepage {
+      .tour {
+        .tour_cell {
+          .tour_descript {
+            h3 {
+              font-size: 1.2rem;
+              margin: 0;
+            }
+            pre {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+      .year_active {
+        .card_container {
+          width: 40%;
+          .btn {
+            width: 90%;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -677,6 +701,27 @@ footer {
         justify-content: center;
         .card-container {
           grid-template-columns: 1fr 1fr;
+        }
+      }
+    }
+    .homepage {
+      .tour {
+        .tour_cell {
+          .tour_descript {
+            h3 {
+              font-size: 1.2rem;
+              margin: 0;
+            }
+          }
+        }
+      }
+      .year_active {
+        .card_container {
+          width: 40%;
+          .btn {
+            width: 90%;
+            font-size: 1rem;
+          }
         }
       }
     }
