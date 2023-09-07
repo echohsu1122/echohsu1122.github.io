@@ -1,6 +1,9 @@
 /////header menu//
 const menuBar = document.querySelector(".fa-bars");
 const wrap_app_header = document.querySelector(".wrap_app_header");
+const container = document.querySelector(".container");
+const homepage = document.querySelector(".homepage");
+const logo = document.querySelector(".logo");
 menuBar.addEventListener("click", () => {
   menuBar.classList.toggle("active");
   if (menuBar.classList.contains("active")) {
@@ -9,6 +12,10 @@ menuBar.addEventListener("click", () => {
   } else {
     wrap_app_header.style.display = "none";
   }
+});
+logo.addEventListener("click", () => {
+  container.style.display = "none";
+  homepage.style.display = "block";
 });
 
 /*Card*/
@@ -51,36 +58,22 @@ async function getResponse(selectOption, searchCity) {
   }).catch((error) => {
     console.log(`出現錯誤${error}`);
   });
-
+  console.log(response.status);
   return response.json();
 }
 
-searchInput.addEventListener("input", (e) => {
-  const cards = document.querySelectorAll(".card");
-  const value = e.target.value;
-
-  cards.forEach((card) => {
-    console.log(card.dataset.info);
-    if (card.dataset.info.includes(value)) {
-      return (card.style.display = "block");
-    } else {
-      card.style.display = "none";
-    }
-  });
-});
-
 async function getData(selectOption, searchCity, skip) {
   const datas = await getResponse(selectOption, searchCity, skip);
-
+  console.log(datas.length, skip);
   if (datas.length == 0 && skip == 0) {
     str = `<h3>抱歉，本地區查無相關資料</h3>`;
     dataUnfide = true;
     document.querySelector("footer").style.marginTop = "65vh";
   } else {
+    console.log(datas.length);
     if (datas.length == 0 && skip > 0) {
-      console.log(datas.length, skip);
       document.querySelector("#dataEnd").innerHTML = "資料結束";
-      // document.querySelector("footer").style.marginBottom = "65vh";
+      newBtn.style.display = "none";
     } else if (selectOption === "Restaurant") {
       datas.forEach((data) => {
         if (data === undefined) return;
@@ -148,6 +141,7 @@ async function getData(selectOption, searchCity, skip) {
         let description;
         let city;
         let address;
+
         if (data === undefined) return;
         if (data.Description === undefined || data.Address === undefined) {
           description = "沒有相關資料";
@@ -191,18 +185,15 @@ async function getData(selectOption, searchCity, skip) {
       });
     }
   }
-
   cardContainer.innerHTML = str;
-
   const cards = document.querySelectorAll(".card");
-  console.log(cards);
   cards.forEach((card) => {
     const img = card.querySelector("img");
-    console.log(img);
+
     function loadImg() {
       card.classList.add("loaded");
     }
-    console.log(img.complete);
+
     if (img.complete) {
       loadImg();
     } else {
@@ -238,7 +229,26 @@ const fetchAccessToken = async () => {
 };
 
 // getData();
+searchInput.addEventListener("input", (e) => {
+  container.style.display = "block";
+  homepage.style.display = "none";
+  const cards = document.querySelectorAll(".card");
+  const value = e.target.value;
+
+  cards.forEach((card) => {
+    console.log(card.dataset.info);
+    if (card.dataset.info.includes(value)) {
+      return (card.style.display = "block");
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
 cityQuery.addEventListener("change", (e) => {
+  container.style.display = "block";
+  newBtn.style.display = "block";
+  homepage.style.display = "none";
+  document.querySelector("#dataEnd").style.display = "none";
   str = "";
   skip = 0;
   selecCity.innerHTML = e.target.selectedOptions[0].innerHTML;
@@ -312,33 +322,40 @@ Restaurant.addEventListener("click", () => {
 });
 
 /*IntersectionObserver */
+const newBtn = document.createElement("button");
+const strBtn = document.createTextNode("載入更多");
+newBtn.appendChild(strBtn);
+newBtn.classList.add("loadmore");
+container.appendChild(newBtn);
 
-document.addEventListener("DOMContentLoaded", () => {
-  let options = {
-    root: null,
-    rootMargin: "70%",
-    threshold: 0.2,
-  };
+newBtn.addEventListener("click", () => {
+  // let options = {
+  //   root: null,
+  //   rootMargin: "70%",
+  //   threshold: 0.2,
+  // };
   // fetchAccessToken();
-  getData(selectOption, searchCity, 0);
+  // getData(selectOption, searchCity, 0);
 
-  const observer = new IntersectionObserver(load, options);
+  // const observer = new IntersectionObserver(load, options);
 
-  if (dataUnfide) {
-    observer.unobserve(document.querySelector("footer"));
-  } else {
-    observer.observe(document.querySelector("footer"));
-  }
+  // if (dataUnfide) {
+  //   observer.unobserve(document.querySelector("footer"));
+  // } else {
+  //   observer.observe(document.querySelector("footer"));
+  // }
+  skip += 50;
+  getData(selectOption, searchCity, skip);
 });
 
-function load(entries) {
-  skip += 50;
-  console.log(skip);
-  if (entries[0].isIntersecting) {
-    console.warn("in view");
-    getData(selectOption, searchCity, skip);
-  }
-}
+// function load(entries) {
+//   skip += 50;
+//   console.log(skip);
+//   if (entries[0].isIntersecting) {
+//     console.warn("in view");
+//     getData(selectOption, searchCity, skip);
+//   }
+// }
 
 upToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });

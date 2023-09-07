@@ -28,40 +28,39 @@ header {
   top: 0;
   z-index: 1;
 }
-header .container {
+header .header_container {
   position: relative;
 }
-header .container .header-menu-toggle {
+header .header_container .header-menu-toggle {
   display: none;
 }
-header .container .wrap_header {
+header .header_container .wrap_header {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1rem;
 }
-header .container .wrap_header .header-menu-list {
+header .header_container .wrap_header .header-menu-list {
   flex: 7;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-header .container .wrap_header .header-menu-list a {
+header .header_container .wrap_header .header-menu-list a {
   margin-right: auto;
-  font-size: 1.5rem;
   color: var(--font-color);
   letter-spacing: 2px;
 }
-header .container .wrap_header .header-account {
+header .header_container .wrap_header .header-account {
   flex: 1;
   display: flex;
   justify-content: center;
 }
-header .container .wrap_header .header-account i {
+header .header_container .wrap_header .header-account i {
   font-size: 1.2rem;
   color: var(--font-color);
 }
-header .container .wrap_app_header {
+header .header_container .wrap_app_header {
   display: none;
 }
 
@@ -73,50 +72,54 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: relative;
   overflow: scroll;
 }
-main .container {
-  width: 90%;
-  position: relative;
-}
-main .container .search-container {
+main .search-container {
   width: 90%;
   margin: 0 auto;
   display: flex;
 }
-main .container .search-container .select-cities {
+main .search-container .select-cities {
   flex: 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
 }
-main .container .search-container .select-cities #labelcity {
+main .search-container .select-cities #labelcity {
   font-size: 1.5rem;
 }
-main .container .search-container .select-cities #city {
+main .search-container .select-cities #city {
   font-size: 1.5rem;
   margin-left: 5px;
   border: none;
 }
-main .container .search-container .select-cities #city:focus-within {
+main .search-container .select-cities #city:focus-within {
   color: #468b97;
 }
-main .container .search-container .search-box {
+main .search-container .search-box {
   flex: 6;
   border: 2px solid #333;
   border-radius: 45px;
   padding: 0.8rem;
   margin: 0.2rem;
 }
-main .container .search-container .search-box input {
+main .search-container .search-box input {
   width: 98%;
   border: none;
   margin-left: 1rem;
   outline: none;
 }
-main .container .search-container .search-box:focus-within {
+main .search-container .search-box:focus-within {
   outline: 4px solid #ea906c;
+}
+main .container {
+  display: none;
+  width: 90%;
+  position: relative;
+  margin-bottom: 1rem;
 }
 main .container .select-option {
   display: flex;
@@ -140,6 +143,9 @@ main .container .select-option button {
 main .container .select-option #ScenicSpot {
   background-color: var(--select-button);
   color: var(--select-btncolor);
+}
+main .container .cities {
+  margin-bottom: 8px;
 }
 main .container .cities .card-container {
   display: grid;
@@ -235,6 +241,157 @@ main .container .cities .card-container .loaded {
 main .container .cities .card-container .loaded > img {
   opacity: 1;
 }
+main .container #dataEnd {
+  text-align: center;
+  font-size: 1rem;
+  margin: 1rem;
+}
+main .container .loadmore {
+  position: absolute;
+  margin: 1rem;
+  font-size: 1.2rem;
+  bottom: -3.2rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 2px;
+}
+main .homepage {
+  width: 100%;
+}
+main .homepage .tour {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .homepage .tour .right {
+  margin-left: 15%;
+}
+main .homepage .tour .left {
+  margin-right: 15%;
+}
+main .homepage .tour .tour_cell {
+  width: 70%;
+  padding-top: 10%;
+  position: relative;
+}
+main .homepage .tour .tour_cell .left {
+  top: 18%;
+  left: -15%;
+}
+main .homepage .tour .tour_cell .right {
+  top: 18%;
+  right: -15%;
+}
+main .homepage .tour .tour_cell .tour_descript {
+  width: 50%;
+  position: absolute;
+  background-color: rgba(234, 144, 108, 0.7254901961);
+}
+main .homepage .tour .tour_cell .tour_descript h3 {
+  background-color: transparent;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+main .homepage .tour .tour_cell .tour_descript pre {
+  background-color: transparent;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+main .homepage .tour .tour_cell .tour_pic {
+  padding-top: 56.25%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.7;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+main .homepage .tour .tour_cell .tour_pic_bg1 {
+  background-image: url("/assets/imgs/pic_1.jpg");
+}
+main .homepage .tour .tour_cell .tour_pic_bg2 {
+  background-image: url("/assets/imgs/pic_2.jpg");
+}
+main .homepage .tour .tour_cell .tour_pic:hover {
+  opacity: 1;
+}
+main .homepage h3 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem;
+}
+main .homepage .year_active {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+main .homepage .year_active .card_container {
+  padding: 1rem;
+}
+main .homepage .year_active .card_container .active_card .bg {
+  padding-top: 56.26%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+}
+main .homepage .year_active .card_container .active_card .bg_1 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/6fe79462-ec06-41fc-8f6e-291250981bbb.jpg&sizetype=2");
+}
+main .homepage .year_active .card_container .active_card .bg_2 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/133e2441-8e81-40be-a60a-21f5c0e00d4f.jpg&sizetype=2");
+}
+main .homepage .year_active .card_container .active_card .bg_3 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/aada9786-3e92-42c4-bf4b-e25afccabe84.jpg&sizetype=2");
+}
+main .homepage .year_active .card_container .active_card .bg_4 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/1865b1a1-b85c-4284-8282-ea6935693344.jpg&sizetype=2");
+}
+main .homepage .year_active .card_container .active_card .bg_5 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/c39f58d1-a906-4424-bd7f-1d13693719df.JPG&sizetype=2");
+}
+main .homepage .year_active .card_container .active_card .bg_6 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/0ab60674-d293-4334-a8fd-c99314ddd394.jpg&sizetype=2");
+}
+main .homepage .year_active .card_container .active_card .bg_7 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/e7d96932-6633-4a2c-b724-c1ad89893c19.jpg&sizetype=2");
+}
+main .homepage .year_active .card_container .active_card .bg_8 {
+  background-image: url("https://www.taiwan.net.tw/pic.ashx?qp=event/a7b307f6-7754-4f86-a4c6-485b0591f649.jpg&sizetype=2");
+}
+main .homepage .year_active .card_container .btn {
+  margin: 1rem;
+  font-size: 1.5rem;
+  width: 400px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid #333;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+main .homepage .year_active .card_container .btn::before {
+  display: block;
+  content: "";
+  position: absolute;
+  cursor: pointer;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.1411764706);
+  transition: width 0.5s;
+}
+main .homepage .year_active .card_container .btn:hover::before {
+  width: 100%;
+}
 
 #up {
   position: fixed;
@@ -252,66 +409,20 @@ main .container .cities .card-container .loaded > img {
   background-color: transparent;
 }
 
-#dataEnd {
-  text-align: center;
-  font-size: 1rem;
-  margin: 1rem;
-}
-
 footer {
   margin-bottom: 0;
   width: inherit;
   padding: 20px;
-  background-color: #468b97;
+  background-color: var(--background-color);
   text-align: center;
 }
 
-@media (max-width: 1400px) {
-  main .container .search-container .select-cities {
-    flex: 1;
-  }
-  main .container .search-container .search-box {
-    flex: 4;
-  }
-  main .container .cities .card-container {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-@media (max-width: 992px) {
-  main .container .search-container .select-cities {
-    font-size: 1.5rem;
-  }
-  main .container .search-container .search-box {
-    flex: 3;
-  }
-}
-@media (max-width: 768px) {
-  header .container .header-menu-list a.link {
-    font-size: 1.2rem;
-  }
-  main .container .search-container .select-cities {
-    flex: 2;
-  }
-  main .container .search-container .select-cities #labelcity,
-  main .container .search-container .select-cities #city {
-    font-size: 1.2rem;
-  }
-  main .container .search-container .search-box {
-    flex: 4;
-  }
-  main .container .cities .card-container {
-    grid-template-columns: 1fr 1fr;
-  }
-  main .container .cities .card-container .card {
-    width: 15rem;
-  }
-}
-@media (max-width: 576px) {
-  header .container .header-menu-toggle {
+@media (min-width: 300px) and (max-width: 575px) {
+  header .header_container .header-menu-toggle {
     display: block;
     position: relative;
   }
-  header .container .header-menu-toggle .fa-bars::after {
+  header .header_container .header-menu-toggle .fa-bars::after {
     content: "\f0d9";
     font-size: 1rem;
     color: #606c5d;
@@ -320,7 +431,7 @@ footer {
     left: 50%;
     opacity: 0;
   }
-  header .container .header-menu-toggle span {
+  header .header_container .header-menu-toggle span {
     opacity: 0;
     font-size: 0.8rem;
     color: #fff4f4;
@@ -331,27 +442,27 @@ footer {
     white-space: nowrap;
     top: 15%;
   }
-  header .container .header-menu-toggle .fa-burger {
+  header .header_container .header-menu-toggle .fa-burger {
     opacity: 0;
   }
-  header .container .header-menu-toggle i {
+  header .header_container .header-menu-toggle i {
     font-size: 1.5rem;
     color: var(--font-color);
   }
-  header .container .header-menu-toggle i:hover {
+  header .header_container .header-menu-toggle i:hover {
     color: #468b97;
     cursor: pointer;
   }
-  header .container .header-menu-toggle i:hover + span, header .container .header-menu-toggle i:hover::after {
+  header .header_container .header-menu-toggle i:hover + span, header .header_container .header-menu-toggle i:hover::after {
     opacity: 1;
   }
-  header .container .header-menu-list .logo {
+  header .header_container .header-menu-list .logo {
     margin-left: auto;
   }
-  header .container .header-menu-list .link {
+  header .header_container .header-menu-list .link {
     display: none;
   }
-  header .container .wrap_app_header {
+  header .header_container .wrap_app_header {
     margin-bottom: 10px;
     opacity: 0;
     width: 100%;
@@ -364,11 +475,11 @@ footer {
     transform-origin: top center;
     animation: showMenu 0.5s ease-in-out forwards;
   }
-  header .container .wrap_app_header a {
+  header .header_container .wrap_app_header a {
     font-size: 1.5rem;
     color: var(--font-color);
   }
-  header .container .wrap_app_header a:hover {
+  header .header_container .wrap_app_header a:hover {
     color: #468b97;
     font-weight: 800;
   }
@@ -391,13 +502,197 @@ footer {
       transform: scaleY(1);
     }
   }
+  main .search-container .select-cities #labelcity {
+    font-size: 1.4rem;
+  }
+  main .search-container .select-cities #city {
+    font-size: 1.2rem;
+  }
+  main .search-container .search-box {
+    flex: 3;
+    margin-left: 0;
+  }
+  main .container {
+    width: 100%;
+  }
+  main .container .cities {
+    display: flex;
+    justify-content: center;
+  }
+  main .container .cities .card-container {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  header .header_container .header-menu-toggle {
+    display: block;
+    position: relative;
+  }
+  header .header_container .header-menu-toggle .fa-bars::after {
+    content: "\f0d9";
+    font-size: 1rem;
+    color: #606c5d;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    opacity: 0;
+  }
+  header .header_container .header-menu-toggle span {
+    opacity: 0;
+    font-size: 0.8rem;
+    color: #fff4f4;
+    background-color: #606c5d;
+    padding: 2px;
+    margin-left: 0.6rem;
+    position: absolute;
+    white-space: nowrap;
+    top: 15%;
+  }
+  header .header_container .header-menu-toggle .fa-burger {
+    opacity: 0;
+  }
+  header .header_container .header-menu-toggle i {
+    font-size: 1.5rem;
+    color: var(--font-color);
+  }
+  header .header_container .header-menu-toggle i:hover {
+    color: #468b97;
+    cursor: pointer;
+  }
+  header .header_container .header-menu-toggle i:hover + span, header .header_container .header-menu-toggle i:hover::after {
+    opacity: 1;
+  }
+  header .header_container .header-menu-list .logo {
+    margin-left: auto;
+  }
+  header .header_container .header-menu-list .link {
+    display: none;
+  }
+  header .header_container .wrap_app_header {
+    margin-bottom: 10px;
+    opacity: 0;
+    width: 100%;
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background-color: var(--background-color);
+    flex-direction: column;
+    padding-left: 1rem;
+    transform-origin: top center;
+    animation: showMenu 0.5s ease-in-out forwards;
+  }
+  header .header_container .wrap_app_header a {
+    font-size: 1.5rem;
+    color: var(--font-color);
+  }
+  header .header_container .wrap_app_header a:hover {
+    color: #468b97;
+    font-weight: 800;
+  }
+  #up {
+    right: 0.5rem;
+    padding: 1px 4px;
+  }
+  #up .fa-arrow-up {
+    color: whitesmoke;
+    font-size: 1.2rem;
+  }
+  @keyframes showMenu {
+    0% {
+      transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.2);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+  main .search-container .select-cities {
+    font-size: 1rem;
+  }
+  main .search-container .search-box {
+    flex: 3;
+  }
   main .container {
     width: 95%;
   }
-  main .container .search-container .select-cities {
-    font-size: 1rem;
+  main .container .cities {
+    display: flex;
+    justify-content: center;
   }
-  main .container .search-container .search-box {
-    flex: 3;
+  main .container .cities .card-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  header .header_container .header-menu-list a.link {
+    font-size: 1.2rem;
+  }
+  main .search-container .select-cities {
+    flex: 2;
+  }
+  main .search-container .select-cities #labelcity,
+  main .search-container .select-cities #city {
+    font-size: 1.2rem;
+  }
+  main .search-container .search-box {
+    flex: 5;
+  }
+  main .container .cities .card-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  main .container .cities .card-container .card {
+    width: 15rem;
+  }
+  main .homepage .year_active .card_container {
+    width: 40%;
+  }
+  main .homepage .year_active .card_container .btn {
+    width: 90%;
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 992px) {
+  header .header_container .header-menu-list a.link {
+    font-size: 1.5rem;
+  }
+  main .search-container .select-cities {
+    flex: 2;
+  }
+  main .search-container .select-cities #labelcity,
+  main .search-container .select-cities #city {
+    font-size: 1.2rem;
+  }
+  main .search-container .search-box {
+    flex: 5;
+  }
+  main .container .cities .card-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  main .homepage .year_active .card_container {
+    width: 30%;
+  }
+  main .homepage .year_active .card_container .btn {
+    width: 90%;
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 1200px) {
+  main .search-container .select-cities {
+    flex: 1;
+  }
+  main .search-container .search-box {
+    flex: 4;
+  }
+  main .container .cities .card-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  main .homepage .year_active .card_container {
+    width: 25%;
+  }
+  main .homepage .year_active .card_container .btn {
+    width: 90%;
+    font-size: 1.2rem;
   }
 }
