@@ -269,73 +269,133 @@ main {
   .homepage {
     width: 100%;
     // display: none;
-
-    .tour {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .right {
-        margin-left: 15%;
-      }
-      .left {
-        margin-right: 15%;
-      }
-      .tour_cell {
-        width: 70%;
-        padding-top: 10%;
-        position: relative;
-        .left {
-          top: 18%;
-          left: -15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      font-size: 1.8rem;
+    }
+    .container {
+      /*設定最外層最大寬度1200px*/
+      max-width: 60%;
+      overflow: hidden;
+      /*設定相對位置*/
+      position: relative;
+      .btns {
+        button {
+          background-color: transparent;
+          border: transparent;
+          cursor: pointer;
         }
-        .right {
-          top: 18%;
-          right: -15%;
-        }
-        .tour_descript {
-          width: 50%;
+        .preBtn {
           position: absolute;
-          background-color: #ea906cb9;
-          h3 {
-            background-color: transparent;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-          }
-          pre {
-            background-color: transparent;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
+          top: 50%;
+          left: 2%;
+          z-index: 2;
+          color: #c08261;
+        }
+        .nextBtn {
+          position: absolute;
+          top: 50%;
+          right: 2%;
+          z-index: 2;
+          color: #c08261;
+        }
+      }
+      .slide_wrapper {
+        /*原本想要讓排成1排*/
+        display: flex;
+        // overflow: hidden;
+        .slider {
+          /*設定每一個slider grow 1 basic 100% */
+          flex: 1 0 100%;
+          .img {
+            width: 100%;
           }
         }
-        .tour_pic {
-          padding-top: 56.25%; //16:9
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          opacity: 0.7;
-          transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-          // position: relative;
-          &_bg1 {
-            background-image: url("/assets/imgs/pic_1.jpg");
+      }
+      .dot_imgs {
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        behavior: smooth;
+        .dot_img {
+          height: 150px;
+          opacity: 0.5;
+          img {
+            max-width: 100%;
           }
-          &_bg2 {
-            background-image: url("/assets/imgs/pic_2.jpg");
-          }
-
-          &:hover {
+          &:first-child {
             opacity: 1;
           }
         }
       }
     }
-    h3 {
-      font-size: 2rem;
-      text-align: center;
-      margin: 2rem;
+
+    .slides_wrap {
+      border-radius: 25px;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+      /*設定最外層最大寬度1200px*/
+      max-width: 90%;
+      aspect-ratio: 18/9;
+      overflow: hidden;
+      /*設定相對位置*/
+      position: relative;
+
+      display: grid;
+      grid-template-columns: 80% 20%;
+
+      .btns {
+        background-color: transparent;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 80%;
+        button {
+          background-color: transparent;
+          border: transparent;
+          cursor: pointer;
+          i {
+            background-color: transparent;
+          }
+        }
+        .preBtn {
+          position: relative;
+          top: 50%;
+          left: 2%;
+          z-index: 2;
+          color: #c08261;
+        }
+        .nextBtn {
+          position: relative;
+          top: 50%;
+          left: 90%;
+          z-index: 2;
+          color: #c08261;
+        }
+      }
+      .slide_wrapper {
+        /*原本想要讓排成1排*/
+        display: flex;
+        // overflow: hidden;
+        .slider {
+          /*設定每一個slider grow 1 basic 100% */
+          flex: 1 0 100%;
+          .img {
+            width: 100%;
+          }
+        }
+      }
+      .dot_imgs {
+        margin-top: -48%;
+        img {
+          max-width: 100%;
+        }
+      }
     }
+
     .year_active {
       display: flex;
       justify-content: center;
