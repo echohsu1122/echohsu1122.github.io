@@ -1,23 +1,27 @@
 /////header menu//
-const menuBar = document.querySelector(".fa-bars");
-const wrap_app_header = document.querySelector(".wrap_app_header");
+const menuBar = document.querySelector(".menu-bar");
+const menuList = document.querySelector(".menu-lists");
 const container = document.querySelector(".container");
 const homepage = document.querySelector(".homepage");
 const logo = document.querySelector(".logo");
+
 menuBar.addEventListener("click", () => {
   menuBar.classList.toggle("active");
+  // console.log(menuBar.lastElementChild);
   if (menuBar.classList.contains("active")) {
-    wrap_app_header.style.display = "flex";
-    wrap_app_header.style.opacity = 1;
+    menuBar.lastElementChild.style.zIndex = 2;
+    menuList.style.display = "block";
   } else {
-    wrap_app_header.style.display = "none";
+    menuBar.lastElementChild.style.zIndex = -1;
+    menuList.style.display = "none";
   }
 });
+/*
 logo.addEventListener("click", () => {
   container.style.display = "none";
   homepage.style.display = "block";
 });
-
+*/
 /*Card*/
 const cityQuery = document.querySelector("#city");
 const selecCity = document.querySelector("#selecCity");
@@ -29,7 +33,7 @@ const Restaurant = document.querySelector("#Restaurant");
 const upToTop = document.querySelector("#up");
 let searchCity = "";
 let selectOption = "ScenicSpot";
-let skip = 0;
+let skip = 50;
 let access_token = "";
 let ScenicSpotUrl;
 let ScenicSpotdata = [];
@@ -44,8 +48,8 @@ setTimeout(() => {
 /*get response */
 async function getResponse(selectOption, searchCity) {
   selectUrl = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${selectOption}/${searchCity}?%24filter=Picture%2FPictureUrl1%20ne%20null%20and%20Picture%2FPictureDescription1%20ne%20null&%24top=50&%24skip=${skip}&%24format=JSON`;
-  console.log(selectUrl);
-  console.log(access_token);
+  // console.log(selectUrl);
+  // console.log(access_token);
   if (access_token == "") {
     await fetchAccessToken();
   }
@@ -58,23 +62,23 @@ async function getResponse(selectOption, searchCity) {
   }).catch((error) => {
     console.log(`出現錯誤${error}`);
   });
-  console.log(response.status);
+
   return response.json();
 }
 
 async function getData(selectOption, searchCity, skip) {
   const datas = await getResponse(selectOption, searchCity, skip);
-  console.log(datas.length, skip);
+
   if (datas.length == 0 && skip == 0) {
+    /*一開始就沒有資料 */
     str = `<h3>抱歉，本地區查無相關資料</h3>`;
     dataUnfide = true;
+    document.querySelector(".dataEnd span").innerHTML = "資料結束";
+    newBtn.style.display = "none";
     document.querySelector("footer").style.marginTop = "65vh";
   } else {
-    console.log(datas.length);
-    if (datas.length == 0 && skip > 0) {
-      document.querySelector("#dataEnd").innerHTML = "資料結束";
-      newBtn.style.display = "none";
-    } else if (selectOption === "Restaurant") {
+    /*一開始有資料，但資料小於查詢數 */
+    if (selectOption === "Restaurant") {
       datas.forEach((data) => {
         if (data === undefined) return;
         if (data.Description) {
@@ -87,7 +91,7 @@ async function getData(selectOption, searchCity, skip) {
                     src='${data.Picture.PictureUrl1.replace("_thumb", "")}'
                     alt='${data.Picture.PictureDescription1}'
                      loading='lazy'
-                    width='398.4' height='265.6'
+                   
                 />
                 
                 <figcaption class="card-body">
@@ -120,7 +124,7 @@ async function getData(selectOption, searchCity, skip) {
                     src='${data.Picture.PictureUrl1.replace("_thumb", "")}'
                     alt='${data.Picture.PictureDescription1}'
                      loading='lazy'
-                    width='398.4' height='265.6'
+           
                 />
                 <figcaption class="card-body">
                   <h3 class="name">${data.HotelName}</h3>
@@ -136,7 +140,7 @@ async function getData(selectOption, searchCity, skip) {
       });
     } else {
       /*景點部分 */
-
+      console.log(datas.length);
       datas.map((data) => {
         let description;
         let city;
@@ -167,7 +171,7 @@ async function getData(selectOption, searchCity, skip) {
                     src='${data.Picture.PictureUrl1.replace("_thumb", "")}'
                     alt='${data.Picture.PictureDescription1}'
                     loading='lazy'
-                    width='398.4' height='265.6'
+    
                  
                 />
                 <figcaption class="card-body">
@@ -185,21 +189,27 @@ async function getData(selectOption, searchCity, skip) {
       });
     }
   }
+  if (datas.length <= 40 && skip == 0) {
+    document.querySelector(".dataEnd span").innerHTML = "資料結束";
+    newBtn.style.display = "none";
+  } else {
+    document.querySelector(".dataEnd span").style.display = "none";
+  }
+
   cardContainer.innerHTML = str;
+  /*
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
     const img = card.querySelector("img");
-
     function loadImg() {
       card.classList.add("loaded");
     }
-
     if (img.complete) {
       loadImg();
     } else {
       img.addEventListener("load", loadImg);
     }
-  });
+  });*/
 }
 
 /*API TOKEN 有存取限制*/
@@ -223,7 +233,7 @@ const fetchAccessToken = async () => {
     .then((res) => res.json())
     .then((data) => {
       access_token = data.access_token;
-      console.log(access_token);
+      // console.log(access_token);
     })
     .catch((error) => console.log(error));
 };
@@ -250,24 +260,25 @@ cityQuery.addEventListener("change", (e) => {
   container.style.display = "block";
   newBtn.style.display = "block";
   homepage.style.display = "none";
-  document.querySelector("#dataEnd").style.display = "none";
+  // document.querySelector("#dataEnd").style.display = "none";
   str = "";
   skip = 0;
-  selecCity.innerHTML = e.target.selectedOptions[0].innerHTML;
+  // selecCity.innerHTML = e.target.selectedOptions[0].innerHTML;
   searchCity = e.target.value;
   if (searchCity === "All") {
     searchCity = "";
   }
   selectOption = "ScenicSpot";
+  /*
   [Hotel, Restaurant].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "var(--background-color)";
-    btn.style.color = "var(--font-color)";
+    btn.style.backgroundColor = "#ffff";
+    btn.style.color = "#333";
   });
 
-  ScenicSpot.style.backgroundColor = "var(--select-button)";
-  ScenicSpot.style.color = "var(--select-btncolor)";
-
+  ScenicSpot.style.backgroundColor = "#333";
+  ScenicSpot.style.color = "#fff";
+*/
   getData(selectOption, searchCity, skip);
 });
 
@@ -276,15 +287,17 @@ ScenicSpot.addEventListener("click", () => {
   skip = 0;
   selectOption = "ScenicSpot";
   ScenicSpot.classList.toggle("active");
+  /*
   [Hotel, Restaurant].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "var(--background-color)";
-    btn.style.color = "var(--font-color)";
+    btn.style.backgroundColor = "#ffff";
+    btn.style.color = "#333";
   });
   if (ScenicSpot.classList.contains("active")) {
-    ScenicSpot.style.backgroundColor = "var(--select-button)";
-    ScenicSpot.style.color = "var(--select-btncolor)";
+    ScenicSpot.style.backgroundColor = "#333";
+    ScenicSpot.style.color = "#fff";
   }
+  */
   getData(selectOption, searchCity);
 });
 
@@ -293,16 +306,16 @@ Hotel.addEventListener("click", () => {
   skip = 0;
   selectOption = "Hotel";
   Hotel.classList.toggle("active");
-
+  /*
   [ScenicSpot, Restaurant].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "var(--background-color)";
-    btn.style.color = "var(--font-color)";
+    btn.style.backgroundColor = "#ffff";
+    btn.style.color = "#333";
   });
   if (Hotel.classList.contains("active")) {
-    Hotel.style.backgroundColor = "var(--select-button)";
-    Hotel.style.color = "var(--select-btncolor)";
-  }
+    Hotel.style.backgroundColor = "#333";
+    Hotel.style.color = "#fff";
+  }*/
   getData(selectOption, searchCity, skip);
 });
 
@@ -311,24 +324,27 @@ Restaurant.addEventListener("click", () => {
   skip = 0;
   selectOption = "Restaurant";
   Restaurant.classList.toggle("active");
+  /*
   [Hotel, ScenicSpot].forEach((btn) => {
     btn.classList.remove("active");
-    btn.style.backgroundColor = "var(--background-color)";
-    btn.style.color = "var(--font-color)";
+     btn.style.backgroundColor = "#ffff";
+     btn.style.color = "#333";
   });
   if (Restaurant.classList.contains("active")) {
-    Restaurant.style.backgroundColor = "var(--select-button)";
+    Restaurant.style.backgroundColor = "#333";
     Restaurant.style.color = "var(--select-btncolor)";
   }
+  */
   getData(selectOption, searchCity, skip);
 });
 
 /*IntersectionObserver */
 const newBtn = document.createElement("button");
 const strBtn = document.createTextNode("載入更多");
+const dataEnd = document.querySelector(".dataEnd");
 newBtn.appendChild(strBtn);
 newBtn.classList.add("loadmore");
-container.appendChild(newBtn);
+dataEnd.appendChild(newBtn);
 
 newBtn.addEventListener("click", () => {
   // let options = {

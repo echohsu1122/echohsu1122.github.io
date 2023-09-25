@@ -14,31 +14,23 @@
   <body>
     <header>
       <div class="header_container">
-        <div class="wrap_header">
-          <div class="header-menu-toggle">
-            <i class="fa-solid fa-bars"></i>
-            <span class="hover-text">Open Menu</span>
-            <i class="fa-solid fa-burger"></i>
-            <!-- <i class="fa-solid fa-xmark"></i> -->
-          </div>
-          <div class="header-menu-list">
-            <a href="#" class="logo">
-              <img src="./favicon.ico.png" width="52px" />
-            </a>
-            <a href="#year" class="link">年度活動</a>
-            <a href="#" class="link">節慶活動</a>
-            <a href="#" class="link">關於島</a>
-            <a href="#" class="link">聯絡我們</a>
-          </div>
-          <div class="header-account">
-            <a href="#"> <i class="fa-regular fa-user"></i></a>
-          </div>
+        <div class="menu-bar">
+          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-burger"></i>
         </div>
-        <div class="wrap_app_header">
-          <a href="#">年度活動</a>
-          <a href="#">節慶活動</a>
-          <a href="#">關於島</a>
-          <a href="#">聯絡我們</a>
+        <div class="logo">
+          <a href="#" class="logo">
+            <img src="./favicon.ico.png" width="52px" />
+          </a>
+        </div>
+        <div class="menu-lists">
+          <a href="#year" class="link">年度活動</a>
+          <a href="#" class="link">節慶活動</a>
+          <a href="#" class="link">關於島</a>
+          <a href="#" class="link">聯絡我們</a>
+        </div>
+        <div class="user">
+          <i class="fa-regular fa-user"></i>
         </div>
       </div>
     </header>
@@ -46,7 +38,6 @@
     <main>
       <div class="search-container">
         <form class="select-cities">
-          <label id="labelcity" for="city">選擇地區</label>
           <select name="city" id="city">
             <option value="All">全部</option>
             <option value="Keelung">基隆市</option>
@@ -88,8 +79,7 @@
 
       <div class="container">
         <div class="select-option">
-          <h3>縣市 <span id="selecCity">全部</span></h3>
-          <button id="ScenicSpot">景點</button>
+          <button id="ScenicSpot" class="scenicSpot">景點</button>
           <button id="Hotel">旅宿</button>
           <button id="Restaurant">餐廳</button>
         </div>
@@ -253,7 +243,7 @@
             </figure>
           </div>
         </section>
-        <div id="dataEnd">
+        <div class="dataEnd">
           <span></span>
         </div>
       </div>
@@ -389,8 +379,9 @@
 
     <footer>
       <p>
-        中華民國交通部、臺灣觀光資訊網 版權所有 Copyright © 2023 MOTC All Rights
-        Reserved.
+        本網頁用於練習前端功能練習<br />
+        圖片及資訊皆為中華民國交通部與臺灣觀光資訊網 版權所有<br />
+        Copyright © 2023 MOTC All Rights Reserved.
       </p>
     </footer>
     <script src="./slide3.js"></script>
