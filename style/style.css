@@ -231,8 +231,21 @@ main .container .cities .card-container .card .info:active {
 main .container .cities .card-container .card .info::-webkit-scrollbar {
   display: none;
 }
-main .container .cities .card-container .loaded {
-  position: relative;
+main .container .cities .card-container .card .loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 main .container .cities .card-container .loaded > img {
   opacity: 1;
@@ -444,7 +457,7 @@ footer {
     flex: 4;
     position: static;
     background-color: white;
-    justify-content: center;
+    justify-content: end;
     margin-inline: 1rem;
   }
   header .header_container .menu-lists a {
@@ -513,7 +526,7 @@ footer {
   }
   main .homepage .year_active .card_container {
     flex: 1 0 100%;
-    max-width: 30%;
+    max-width: 35%;
   }
   main .homepage .year_active .card_container .btn {
     width: 90%;

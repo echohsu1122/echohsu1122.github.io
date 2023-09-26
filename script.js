@@ -33,7 +33,7 @@ const Restaurant = document.querySelector("#Restaurant");
 const upToTop = document.querySelector("#up");
 let searchCity = "";
 let selectOption = "ScenicSpot";
-let skip = 50;
+let skip = 0;
 let access_token = "";
 let ScenicSpotUrl;
 let ScenicSpotdata = [];
@@ -77,7 +77,6 @@ async function getData(selectOption, searchCity, skip) {
     newBtn.style.display = "none";
     document.querySelector("footer").style.marginTop = "65vh";
   } else {
-    /*一開始有資料，但資料小於查詢數 */
     if (selectOption === "Restaurant") {
       datas.forEach((data) => {
         if (data === undefined) return;
@@ -140,7 +139,7 @@ async function getData(selectOption, searchCity, skip) {
       });
     } else {
       /*景點部分 */
-      console.log(datas.length);
+
       datas.map((data) => {
         let description;
         let city;
@@ -171,8 +170,7 @@ async function getData(selectOption, searchCity, skip) {
                     src='${data.Picture.PictureUrl1.replace("_thumb", "")}'
                     alt='${data.Picture.PictureDescription1}'
                     loading='lazy'
-    
-                 
+
                 />
                 <figcaption class="card-body">
                   <h3 class="name">${city}
@@ -189,6 +187,7 @@ async function getData(selectOption, searchCity, skip) {
       });
     }
   }
+  /*一開始有資料，但資料小於查詢數 */
   if (datas.length <= 40 && skip == 0) {
     document.querySelector(".dataEnd span").innerHTML = "資料結束";
     newBtn.style.display = "none";
@@ -198,16 +197,25 @@ async function getData(selectOption, searchCity, skip) {
 
   cardContainer.innerHTML = str;
   /*
+  const imgs = document.querySelectorAll("img");
+  console.log(imgs);
+  imgs.forEach((img) => {
+    if (img.complete) {
+      img.classList.remove("loader");
+    }
+  });*/
+
+  /*
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
     const img = card.querySelector("img");
-    function loadImg() {
-      card.classList.add("loaded");
-    }
+
     if (img.complete) {
-      loadImg();
+      card.classList.remove("loader");
     } else {
-      img.addEventListener("load", loadImg);
+      img.addEventListener("load", () => {
+        card.classList.add("loader");
+      });
     }
   });*/
 }
@@ -237,29 +245,40 @@ const fetchAccessToken = async () => {
     })
     .catch((error) => console.log(error));
 };
-
-// getData();
-searchInput.addEventListener("input", (e) => {
-  getData(selectOption, searchCity);
+function switchPage() {
   container.style.display = "block";
   newBtn.style.display = "block";
   homepage.style.display = "none";
-  const cards = document.querySelectorAll(".card");
+}
+
+searchInput.addEventListener("keydown", async (e) => {
   const value = e.target.value;
 
-  cards.forEach((card) => {
-    console.log(card.dataset.info);
-    if (card.dataset.info.includes(value)) {
-      return (card.style.display = "block");
-    } else {
-      card.style.display = "none";
+  await getData(selectOption, searchCity);
+  switchPage();
+  /*注意querySelectorAll是nodeList靜態 */
+  if (e.key === "Enter" || e.keyCode === 13) {
+    console.log("filter");
+    const cards = document.querySelectorAll(".card");
+    cardContainer.innerHTML = "";
+    cards.forEach((card) => {
+      console.log(card.dataset.info.includes(value));
+      if (card.dataset.info.includes(value)) {
+        cardContainer.appendChild(card);
+      }
+    });
+    console.log(cardContainer.innerHTML === "");
+    if (cardContainer.innerHTML === "") {
+      document.querySelector(".dataEnd span").style.display = "block";
+      document.querySelector(".dataEnd span").innerHTML = "查無資料";
+      newBtn.style.display = "none";
     }
-  });
+  }
 });
+
 cityQuery.addEventListener("change", (e) => {
-  container.style.display = "block";
-  newBtn.style.display = "block";
-  homepage.style.display = "none";
+  switchPage();
+
   // document.querySelector("#dataEnd").style.display = "none";
   str = "";
   skip = 0;
@@ -282,6 +301,27 @@ cityQuery.addEventListener("change", (e) => {
   getData(selectOption, searchCity, skip);
 });
 
+[ScenicSpot, Hotel, Restaurant].forEach((queryspot) => {
+  queryspot.addEventListener("click", () => {
+    switchPage();
+    str = "";
+    selectOption = queryspot.id;
+    btnColorDOM(searchCity);
+    getData(selectOption, searchCity, skip);
+  });
+});
+function btnColorDOM(searchCity) {
+  [ScenicSpot, Hotel, Restaurant].forEach((btn) => {
+    if (btn.id == searchCity) {
+      btn.style.backgroundColor = "#333";
+      btn.style.color = "#fff";
+    } else {
+      btn.style.backgroundColor = "#ffff";
+      btn.style.color = "#333";
+    }
+  });
+}
+/*
 ScenicSpot.addEventListener("click", () => {
   str = "";
   skip = 0;
@@ -297,7 +337,7 @@ ScenicSpot.addEventListener("click", () => {
     ScenicSpot.style.backgroundColor = "#333";
     ScenicSpot.style.color = "#fff";
   }
-  */
+  */ /*
   getData(selectOption, searchCity);
 });
 
@@ -315,7 +355,7 @@ Hotel.addEventListener("click", () => {
   if (Hotel.classList.contains("active")) {
     Hotel.style.backgroundColor = "#333";
     Hotel.style.color = "#fff";
-  }*/
+  }*/ /*
   getData(selectOption, searchCity, skip);
 });
 
@@ -334,7 +374,7 @@ Restaurant.addEventListener("click", () => {
     Restaurant.style.backgroundColor = "#333";
     Restaurant.style.color = "var(--select-btncolor)";
   }
-  */
+  */ /*
   getData(selectOption, searchCity, skip);
 });
 
