@@ -306,7 +306,7 @@ cityQuery.addEventListener("change", (e) => {
     switchPage();
     str = "";
     selectOption = queryspot.id;
-    btnColorDOM(searchCity);
+    btnColorDOM(selectOption);
     getData(selectOption, searchCity, skip);
   });
 });
